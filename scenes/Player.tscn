@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://c55r7cwrtewk3"]
+
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_xl177"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hn1qj"]
+friction = 0.0
+absorbent = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpkge"]
+size = Vector2(150, 20)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gr8yb"]
+properties/0/path = NodePath(".:_syncInfo")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+
+[node name="Player" type="StaticBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_hn1qj")
+script = ExtResource("1_xl177")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xpkge")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -66.0
+offset_top = -11.0
+offset_right = 66.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 0.1
+delta_interval = 0.1
+replication_config = SubResource("SceneReplicationConfig_gr8yb")

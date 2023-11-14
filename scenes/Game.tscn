@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwfi2xydyhdpc"]
+
+[ext_resource type="Script" path="res://scripts/Game.cs" id="1_6sdl3"]
+[ext_resource type="PackedScene" uid="uid://chx1xr5ifc1lg" path="res://scenes/Ball.tscn" id="1_f57oj"]
+[ext_resource type="PackedScene" uid="uid://c55r7cwrtewk3" path="res://scenes/Player.tscn" id="2_bs5p6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0bus7"]
+friction = 0.0
+absorbent = true
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kgd34"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_6sdl3")
+_playerPackedScene = ExtResource("2_bs5p6")
+
+[node name="Ball" parent="." instance=ExtResource("1_f57oj")]
+_speed = 400.0
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 359.5
+offset_right = 408.5
+offset_bottom = 26.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = "Player"
+
+[node name="GameBordersArea" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_0bus7")
+
+[node name="BottomShape" type="CollisionShape2D" parent="GameBordersArea"]
+position = Vector2(578, 644)
+scale = Vector2(5.92, 1)
+shape = SubResource("WorldBoundaryShape2D_kgd34")
+
+[node name="TopShape" type="CollisionShape2D" parent="GameBordersArea"]
+position = Vector2(576, -1)
+rotation = -3.14159
+scale = Vector2(5.92, 1)
+shape = SubResource("WorldBoundaryShape2D_kgd34")
+
+[node name="LeftShape" type="CollisionShape2D" parent="GameBordersArea"]
+position = Vector2(1154, 309)
+rotation = -1.5708
+scale = Vector2(5.92, 1)
+shape = SubResource("WorldBoundaryShape2D_kgd34")
+
+[node name="RightShape" type="CollisionShape2D" parent="GameBordersArea"]
+position = Vector2(0, 351)
+rotation = 1.5708
+scale = Vector2(5.92, 1)
+shape = SubResource("WorldBoundaryShape2D_kgd34")
+
+[node name="Players" type="Node2D" parent="."]

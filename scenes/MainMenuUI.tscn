@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://chu3mqkl3joa0"]
+
+[ext_resource type="Script" path="res://scripts/MainMenuUI.cs" id="1_jrake"]
+[ext_resource type="PackedScene" uid="uid://dbvurdb57y4mw" path="res://scenes/WaitingLabel.tscn" id="1_rdbwd"]
+[ext_resource type="PackedScene" uid="uid://cqduwgbpt7jp0" path="res://scenes/CreateGamePopup.tscn" id="3_60w8x"]
+
+[node name="MainMenuUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jrake")
+
+[node name="MainMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TitleLabel" type="Label" parent="MainMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 36
+text = "MultiplayerGameTest"
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="MainMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 25
+
+[node name="JoinGameButton" type="Button" parent="MainMarginContainer/ButtonsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Join a game"
+
+[node name="HostGameButton" type="Button" parent="MainMarginContainer/ButtonsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Host a game"
+
+[node name="StopButton" type="Button" parent="MainMarginContainer/ButtonsContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "X"
+
+[node name="WaitingLabel" parent="MainMarginContainer" instance=ExtResource("1_rdbwd")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Waiting for a player..."
+
+[node name="CreateGamePopup" parent="." instance=ExtResource("3_60w8x")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="button_down" from="MainMarginContainer/ButtonsContainer/JoinGameButton" to="." method="_on_join_game_button_button_down"]
+[connection signal="button_down" from="MainMarginContainer/ButtonsContainer/HostGameButton" to="." method="_on_host_game_button_button_down"]
+[connection signal="button_down" from="MainMarginContainer/ButtonsContainer/StopButton" to="." method="_on_stop_button_button_down"]

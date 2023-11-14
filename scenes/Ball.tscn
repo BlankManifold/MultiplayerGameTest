@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://chx1xr5ifc1lg"]
+
+[ext_resource type="Script" path="res://scripts/Ball.cs" id="1_d886k"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lyjeb"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mshe2"]
+radius = 50.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tcwg7"]
+properties/0/path = NodePath(".:_syncInfo")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+
+[node name="Ball" type="RigidBody2D"]
+position = Vector2(390, 199)
+physics_material_override = SubResource("PhysicsMaterial_lyjeb")
+gravity_scale = 0.0
+linear_damp_mode = 1
+script = ExtResource("1_d886k")
+_speed = 200.0
+_lerpWeightDict = {
+"pos": 0.7
+}
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mshe2")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 0.1
+delta_interval = 0.1
+replication_config = SubResource("SceneReplicationConfig_tcwg7")

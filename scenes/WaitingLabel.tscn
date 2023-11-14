@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbvurdb57y4mw"]
+
+[ext_resource type="Script" path="res://scripts/WaitingLabel.cs" id="1_lemmk"]
+
+[node name="WaitingLabel" type="Label"]
+unique_name_in_owner = true
+offset_top = 1.0
+offset_right = 227.0
+offset_bottom = 38.0
+theme_override_font_sizes/font_size = 24
+text = "Waiting for a player"
+script = ExtResource("1_lemmk")
+
+[node name="DotsTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+
+[node name="StartGameTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+process_callback = 0
+wait_time = 5.0
+one_shot = true

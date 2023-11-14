@@ -1,0 +1,89 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqduwgbpt7jp0"]
+
+[ext_resource type="Script" path="res://scripts/CreateGamePopup.cs" id="1_v7xad"]
+
+[sub_resource type="Theme" id="Theme_xsmpd"]
+default_font_size = 26
+/font_sizes/font_size = 26
+
+[node name="CreateGamePopup" type="PopupPanel"]
+title = "Create a lobby"
+initial_position = 1
+size = Vector2i(508, 224)
+visible = true
+borderless = false
+theme = SubResource("Theme_xsmpd")
+script = ExtResource("1_v7xad")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 504.0
+offset_bottom = 220.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="GameNameContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="GameNameLabel" type="Label" parent="MarginContainer/VBoxContainer/GameNameContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Lobby name"
+
+[node name="GameNameLineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/GameNameContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+max_length = 25
+clear_button_enabled = true
+
+[node name="PeerNameContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PeerNameLabel" type="Label" parent="MarginContainer/VBoxContainer/PeerNameContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Player name"
+
+[node name="PeerNameLineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/PeerNameContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+max_length = 25
+clear_button_enabled = true
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="CreateGameButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Confirm"
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Back"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/ButtonsContainer/CreateGameButton" to="." method="_on_create_game_button_button_down"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/ButtonsContainer/BackButton" to="." method="_on_back_button_button_down"]

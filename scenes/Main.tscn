@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3ofsnettl5f8"]
+
+[ext_resource type="Script" path="res://scripts/Main.cs" id="1_8u6sa"]
+[ext_resource type="PackedScene" uid="uid://chu3mqkl3joa0" path="res://scenes/MainMenuUI.tscn" id="2_0w35a"]
+[ext_resource type="PackedScene" uid="uid://dwfi2xydyhdpc" path="res://scenes/Game.tscn" id="2_qnrdb"]
+[ext_resource type="Script" path="res://scripts/MultiPlayerManager.cs" id="3_yju0w"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_8u6sa")
+_gamePackedScene = ExtResource("2_qnrdb")
+
+[node name="MainMenuLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenuUI" parent="MainMenuLayer" instance=ExtResource("2_0w35a")]
+unique_name_in_owner = true
+
+[node name="MultiPlayerManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_yju0w")
